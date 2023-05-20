@@ -17,8 +17,8 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
     obscureText: isPasswordType,
     enableSuggestions: !isPasswordType,
     autocorrect: !isPasswordType,
-    cursorColor: Colors.black,
-    style: TextStyle(color: Colors.black.withOpacity(0.9)),
+    cursorColor: Colors.white,
+    style: TextStyle(color: Colors.white.withOpacity(0.9)),
     decoration: InputDecoration(
       prefixIcon: Icon(
         icon,
