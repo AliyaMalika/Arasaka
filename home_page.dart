@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:umaps/pages/maps_page.dart';
+import 'package:umaps/pages/profile_page.dart';
+import 'package:umaps/pages/timetable_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -26,21 +29,30 @@ class HomePage extends StatelessWidget {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/profile');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()),
+                  );
                 },
                 child: Text('Profile'),
               ),
               SizedBox(height: 46),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/timetable');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => TimetablePage()),
+                  );
                 },
                 child: Text('Timetable'),
               ),
               SizedBox(height: 46),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/maps');
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MapsPage()),
+                  );
                 },
                 child: Text('Maps'),
               ),
