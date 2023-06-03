@@ -1,44 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class MapsPage extends StatelessWidget {
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Google Maps App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  late GoogleMapController mapController;
+
+  final CameraPosition _initialCameraPosition = CameraPosition(
+    target: LatLng(37.7749, -122.4194),
+    zoom: 11.0,
+  );
+
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Maps'),
+        title: Text('Google Maps App'),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 88, 212, 243),
-              Color.fromARGB(255, 48, 163, 167),
-              Color.fromARGB(255, 6, 133, 133)
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                'Maps',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16),
-              // TODO: Implement maps functionality
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context); // Go back to the homepage
-                },
-                child: Text('Back to Homepage'),
-              ),
-            ],
-          ),
-        ),
+      body: GoogleMap(
+        onMapCreated: _onMapCreated,
+        initialCameraPosition: _initialCameraPosition,
       ),
     );
   }
